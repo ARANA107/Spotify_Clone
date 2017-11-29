@@ -1,35 +1,11 @@
 <?php
+include("includes/classes/Account.php");
+$account = new Account();
+$account->register();
 
-function sanitizeFormUsername($inputText){
-  $inputText = strip_tags($inputText);
-  $inputText = str_replace(" ","",$inputText);
-  return $inputText;
-}
-
-function sanitizeFormString($inputText){
-  $inputText = strip_tags($inputText);
-  $inputText = str_replace(" ","",$inputText);
-  $inputText = ucfirst(strtolower($inputText));
-  return $inputText;
-}
-
-if(isset($_POST['loginButton'])){
-  echo "Login button was pressed";
-}
-
-if(isset($_POST['registerButton'])){
-  // echo "Register button was pressed";
-  $username = sanitizeFormUsername( $_POST['username']);
-
-
-
-  $firstname = $_POST['firstname'];
-
-
-}
-?>
-
-
+include("includes/handlers/register-handler.php");
+include("includes/handlers/login-handler.php");
+ ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -65,14 +41,14 @@ if(isset($_POST['registerButton'])){
          <p> <label for="lastname" >Last name: </label>
           <input id="lastname" name="lastname" type="text" placeholder="ex. mathews" required></p>
 
-           <p> <label for="email" >email: </label>
-             <input id="email" name="email" type="email" placeholder="ex. ash19@gmail.com" required></p>
+           <p> <label for="email1" >email: </label>
+             <input id="email1" name="email1" type="email" placeholder="ex. ash19@gmail.com" required></p>
 
              <p> <label for="email2" >Confirm Email: </label>
                <input id="email2" name="email2" type="email" placeholder="ex.ash19@gmail.com " required></p>
 
-    <p> <label for="password">Password: </label>
-      <input id="password" name="password" type="password" placeholder="your password"></p>
+    <p> <label for="password1">Password: </label>
+      <input id="password1" name="password1" type="password" placeholder="your password"></p>
 
       <p> <label for="password2">Confirm Password: </label>
         <input id="password2" name="password2" type="password" placeholder="your password"></p>
