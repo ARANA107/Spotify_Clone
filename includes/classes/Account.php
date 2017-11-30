@@ -1,9 +1,26 @@
 <?php
 class Account {
-
+private $con;
 private $errorArray;
-public function __construct(){
+public function __construct($con){
+  $this->con=$con;
 $this->errorArray=array();
+  }
+
+  public function login($un, $pw) {
+
+    $pw = md5($pw);
+
+    $query = mysqli_query($this->con, "SELECT * FROM users WHERE username='$un' AND password='$pw'");
+
+    if(mysqli_num_rows($query) == 1) {
+      return true;
+    }
+    else {
+      array_push($this->errorArray, Constants::$loginFailed);
+      return false;
+    }
+
   }
 
 public function register($un,$fn,$ln,$e1,$e2,$pw1,$pw2){
@@ -15,7 +32,7 @@ public function register($un,$fn,$ln,$e1,$e2,$pw1,$pw2){
 
   if(empty($this->errorArray)){
     //insert into database, since there are no errors
-    return true;
+    return $this->insertUserDetails($un,$fn,$ln,$e1,$pw1);
   }else{
 return false;
   }
@@ -28,12 +45,26 @@ public function getError($error){
   return "<span class='errorMessage'>$error</span>";
 }
 
+private function insertUserDetails($un,$fn,$ln,$e1,$pw1){
+$encryptedPW = md5($pw1); //Password will be encrypted
+$profilePic = "assets/images/profile-pics/pic.jpg";
+$date = date("Y-m-d");
+
+$result = mysqli_query($this->con,"INSERT INTO users VALUES ('','$un','$fn','$ln','$e1','$encryptedPW','$date','$profilePic')");
+echo result;
+return $result;
+}                                                            //first one is blank bcus it is id and it is auto increment
+
   private function validateUsername($un){
   if(strlen($un) > 25 || strlen($un) < 5){
     array_push($this->errorArray, Constants::$usernameCharacters);
     return;
   }
-  //todo: check if username exists!
+  $checkUsernameQuery = mysqli_query($this->con,"SELECT username FROM users WHERE username='$un'");
+  if(mysqli_num_rows($checkUsernameQuery) != 0){
+    array_push($this->errorArray, Constants::$usernameTaken);
+    return;
+  }
   }
 
   private function validateFirstname($fn){
@@ -61,7 +92,11 @@ if(!filter_var($e1, FILTER_VALIDATE_EMAIL)){
   array_push($this->errorArray, Constants::$emailInvalid);
   return;
 }
-//todo: check that username already have not been used!
+$checkEmailQuery = mysqli_query($this->con,"SELECT email FROM users WHERE email='$e1'");
+if(mysqli_num_rows($checkEmailQuery) != 0){
+  array_push($this->errorArray, Constants::$emailTaken);
+  return;
+}
   }
 
   private function validatePassword($p1,$p2){
