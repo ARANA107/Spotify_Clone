@@ -21,6 +21,7 @@ function getInputValues($name){
 </head>
 <body>
   <div id="background">
+    <div id="loginContainer">
     <div id="inputContainer">
 
       <form id="loginForm" action="register.php" method="POST">
@@ -87,5 +88,6 @@ function getInputValues($name){
 
                   </div>
                 </div>
+              </div>
               </body>
               </html>
