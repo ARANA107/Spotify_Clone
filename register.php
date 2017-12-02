@@ -18,8 +18,36 @@ function getInputValues($name){
 <head>
   <title>Welcome to slotify!</title>
   <link rel="stylesheet" type="text/css" href="assets/css/register.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="assets/js/register.js"></script>
 </head>
 <body>
+  <?php
+if(isset($_POST['registerButton'])) {
+  echo '<script>
+  $(document).ready(function(){
+    $("#loginForm").hide();
+      $("#registerForm").show();
+    });
+
+
+
+  </script>';
+}else{
+  echo '<script>
+  $(document).ready(function(){
+    $("#loginForm").show();
+      $("#registerForm").hide();
+    });
+
+
+
+  </script>';
+}
+   ?>
+
+
   <div id="background">
     <div id="loginContainer">
       <div id="inputContainer">
