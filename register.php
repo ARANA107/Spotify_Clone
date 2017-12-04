@@ -24,28 +24,28 @@ function getInputValues($name){
 </head>
 <body>
   <?php
-if(isset($_POST['registerButton'])) {
-  echo '<script>
-  $(document).ready(function(){
-    $("#loginForm").hide();
+  if(isset($_POST['registerButton'])) {
+    echo '<script>
+    $(document).ready(function(){
+      $("#loginForm").hide();
       $("#registerForm").show();
     });
 
 
 
-  </script>';
-}else{
-  echo '<script>
-  $(document).ready(function(){
-    $("#loginForm").show();
+    </script>';
+  }else{
+    echo '<script>
+    $(document).ready(function(){
+      $("#loginForm").show();
       $("#registerForm").hide();
     });
 
 
 
-  </script>';
-}
-   ?>
+    </script>';
+  }
+  ?>
 
 
   <div id="background">
@@ -57,7 +57,7 @@ if(isset($_POST['registerButton'])) {
           <p>
             <?php echo $account->getError(Constants::$loginFailed); ?>
             <label for="loginUsername">Username</label>
-            <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" required>
+            <input id="loginUsername" name="loginUsername" type="text" placeholder="e.g. bartSimpson" value="<?php getInputValues('loginUsername') ?>" required>
           </p>
           <p>
             <label for="loginPassword">Password</label>
@@ -66,9 +66,9 @@ if(isset($_POST['registerButton'])) {
 
           <button type="submit" name="loginButton">LOG IN</button>
 
-             <div class="hasAccountText">
-               <span id="hideLogin">Dont have an account yet? Signup here.</span>
-             </div>
+          <div class="hasAccountText">
+            <span id="hideLogin">Dont have an account yet? Signup here.</span>
+          </div>
         </form>
 
 
@@ -122,7 +122,18 @@ if(isset($_POST['registerButton'])) {
                       </form>
 
                     </div>
+                    <div id="loginText" >
+                      <h1>Get great music, right now!</h1>
+                      <h2>Listen to lots of song for free.</h2>
+                      <ul>
+                        <li>Discover music you fall in love with.</li>
+                        <li>Create your own playlist.</li>
+                        <li>Follow artist to keep up to date.</li>
+
+                      </ul>
+                    </div>
                   </div>
+                  <!-- <a href="https://icons8.com/windows-icons">Windows icons by Icons8</a> -->
                 </div>
-              </body>
+
               </html>
