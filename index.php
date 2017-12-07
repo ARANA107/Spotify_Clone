@@ -16,6 +16,9 @@ if(isset($_SESSION['userLoggedIn'])) {
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
+<div id="mainContainer">
+
+  <div id="topContainer"></div>
 
   <div id="nowPlayingBarContainer">
     <div id="nowPlayingBar">
@@ -98,6 +101,8 @@ if(isset($_SESSION['userLoggedIn'])) {
 
     </div>
   </div>
+
+</div>
 
 
 
