@@ -134,9 +134,5 @@ if(isset($_SESSION['userLoggedIn'])) {
 
 </div>
 
-
-
-
-
 </body>
 </html>
