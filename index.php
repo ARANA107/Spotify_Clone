@@ -1,32 +1,3 @@
-<?php
+<?php include("includes/header.php"); ?>
 
-//SESSION_DESTROY()  to logout will be added later
-include("includes/config.php");
-if(isset($_SESSION['userLoggedIn'])) {
-  $userLoggedIn = $_SESSION['userLoggedIn'];
-}else{
-  header("Location: register.php");
-}
-?>
-
-<html>
-
-<head>
-  <title>Welcome to spotify!</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-<body>
-<div id="mainContainer">
-
-  <div id="topContainer">
-    <?php include("includes/navBarContainer.php"); ?>
-
-  </div>
-
-
-  <?php include("includes/nowPlayingBarContainer.php"); ?>
-
-</div>
-
-</body>
-</html>
+<?php include("includes/footer.php"); ?>
