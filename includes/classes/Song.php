@@ -27,6 +27,9 @@ public function __construct($con, $id){
   public function getTitle(){
     return $this->title;
   }
+  public function getId(){
+    return $this->id;
+  }
   public function getArtist(){
     return new Artist($this->con, $this->artistId);
   }
