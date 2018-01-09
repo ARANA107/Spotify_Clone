@@ -2,13 +2,16 @@
 
 //SESSION_DESTROY()  to logout will be added later
 include("includes/config.php");
+include("includes/classes/User.php");
 include("includes/classes/Artist.php");
 include("includes/classes/Album.php");
 include("includes/classes/Song.php");
+include("includes/classes/Playlist.php");
 
 if(isset($_SESSION['userLoggedIn'])) {
-  $userLoggedIn = $_SESSION['userLoggedIn'];
-  echo "<script>userLoggedIn = '$userLoggedIn';</script>";
+  $userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
+$userName = $userLoggedIn->getUsername();
+  echo "<script>userLoggedIn = '$userName'</script>";
 }else{
   header("Location: register.php");
 }
